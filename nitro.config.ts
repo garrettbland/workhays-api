@@ -14,6 +14,6 @@ export default defineNitroConfig({
         /**
          * false by default. Use NEXT_ENABLE_LOGGING to override in .env
          */
-        enableLogging: false,
+        enableLogging: 'false',
     },
 })

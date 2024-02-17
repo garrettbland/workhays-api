@@ -13,7 +13,7 @@
  */
 export default defineNitroPlugin((nitro) => {
     nitro.hooks.hook('request', async (event) => {
-        const isLoggingEnabled = Boolean(useRuntimeConfig().enableLogging)
+        const isLoggingEnabled = useRuntimeConfig().enableLogging
         if (isLoggingEnabled) {
             console.log(`${event.method} ${event.path}`)
         }
