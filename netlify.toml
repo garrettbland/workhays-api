@@ -1,0 +1,9 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[context.deploy-preview.environment]
+  NITRO_ENABLE_LOGGING = true
+
+[context.production.environment]
+  NITRO_ENABLE_LOGGING = false
