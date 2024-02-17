@@ -1,0 +1,23 @@
+{
+    "private": true,
+    "scripts": {
+        "prepare": "nitropack prepare",
+        "dev": "nitropack dev",
+        "build": "nitropack build",
+        "preview": "node .output/server/index.mjs"
+    },
+    "dependencies": {
+        "nitropack": "latest"
+    },
+    "devDependencies": {
+        "prettier": "^3.2.5"
+    },
+    "prettier": {
+        "semi": false,
+        "bracketSpacing": true,
+        "singleQuote": true,
+        "printWidth": 100,
+        "tabWidth": 4,
+        "trailingComma": "es5"
+    }
+}
