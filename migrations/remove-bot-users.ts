@@ -9,6 +9,17 @@
 import users from '../../../../Downloads/users-feb-2024.json'
 import employers from '../../../../Downloads/employers-feb-2024.json'
 
+const createFilteredUsersAndEmployersJSON = async () => {
+    console.log(`Users ${Bun.argv[2]}`)
+    console.log(`Employers ${Bun.argv[3]}`)
+
+    const path = Bun.file(`./migrations/employers-modified-${Date.now()}.json`)
+    await Bun.write(path, '{name: "garrett"}')
+    console.log('Done')
+}
+
+createFilteredUsersAndEmployersJSON()
+
 const main = () => {
     console.log(`ℹ️ Starting bot removal...`)
     console.log(`ℹ️ Total users...${users.length}`)
@@ -66,4 +77,4 @@ const main = () => {
     )
 }
 
-main()
+// main()

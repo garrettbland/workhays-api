@@ -1,27 +1,27 @@
 import { database, serverTimestamp } from './firebase.mjs'
 import { readFile } from 'fs/promises'
 
-const employers_test = [
-    {
-        id: '08571a6f-c4bc-4ee9-b654-7627b5433d46',
-        user_id: 'a8b3c035-4d25-4b1e-8545-116cb0123c26',
-        title: 'G&H WorX, LLC',
-        description:
-            '<div>Primarily fencing and sprinkler system installation, maintenance and ongoing support for residents and commercial businesses. &nbsp; Specialize in land preparation, medium scale landscaping and other tasks related to land maintenance and beautification!</div>',
-        contact: 'Taylor and/or Brian Meder',
-        email: 'brian@ghworx.com',
-        phone: '7856212500',
-        logo_url: 'public/uploads/employers/1658350364106.png',
-        header_image_url: null,
-        website_url: 'www.ghworx.com',
-        facebook_url: 'https://www.facebook.com/GHWorXHays',
-        twitter_url: '',
-        instagram_url: null,
-        youtube_url: null,
-        created_at: '2022-07-20 20:47:21',
-        updated_at: '2022-07-20 20:52:44',
-    },
-]
+// const employers_test = [
+//     {
+//         id: '08571a6f-c4bc-4ee9-b654-7627b5433d46',
+//         user_id: 'a8b3c035-4d25-4b1e-8545-116cb0123c26',
+//         title: 'G&H WorX, LLC',
+//         description:
+//             '<div>Primarily fencing and sprinkler system installation, maintenance and ongoing support for residents and commercial businesses. &nbsp; Specialize in land preparation, medium scale landscaping and other tasks related to land maintenance and beautification!</div>',
+//         contact: 'Taylor and/or Brian Meder',
+//         email: 'brian@ghworx.com',
+//         phone: '7856212500',
+//         logo_url: 'public/uploads/employers/1658350364106.png',
+//         header_image_url: null,
+//         website_url: 'www.ghworx.com',
+//         facebook_url: 'https://www.facebook.com/GHWorXHays',
+//         twitter_url: '',
+//         instagram_url: null,
+//         youtube_url: null,
+//         created_at: '2022-07-20 20:47:21',
+//         updated_at: '2022-07-20 20:52:44',
+//     },
+// ]
 
 /**
  * JSON file to import. Throw if not provided
@@ -80,8 +80,11 @@ const addDataTest = async () => {
                     ),
                 ],
             }
+        })
 
-            // batches[index] = database.batch()
+        batches.forEach((item, index) => {
+            console.log(`✨ Setting data for batch ${index}`)
+            console.log(`ℹ️ Loop through and do batchRef.set ${item.documents.length} times...`)
         })
 
         for (var i = 0; i < batches.length; i++) {
@@ -89,6 +92,9 @@ const addDataTest = async () => {
             await waitOneSecond()
             console.log(`Loop through documents for batch ${i} and add to batch...`)
             console.log(`Commit batch ${i} with ${batches[i].documents.length} documents...`)
+            // batches[i].commit().then(function () {
+            //     console.log(`✅ Wrote batch ` + i)
+            // })
         }
 
         // const batch = database.batch()
