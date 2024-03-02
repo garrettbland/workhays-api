@@ -3,7 +3,9 @@
  * doesn't work with Firebase admin sdk
  *
  * Usage...
- * node migrate-users-to-firestore users.json
+ * ```
+ * node migrations/migrate-users-to-firestore.mjs users-verified-export.json
+ * ```
  */
 
 import { database, serverTimestamp } from './firebase.mjs'
