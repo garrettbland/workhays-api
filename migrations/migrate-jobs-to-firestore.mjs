@@ -1,10 +1,10 @@
 /**
- * Imports employers from JSON file and into firestore database. Must use node. Bun
+ * Imports users from JSON file and into firestore database. Must use node. Bun
  * doesn't work with Firebase admin sdk
  *
  * Usage...
- * ```bash
- * node migrations/migrate-employers-to-firestore.mjs employers-verified-export.json
+ * ```
+ * node migrations/migrate-users-to-firestore.mjs users-verified-export.json
  * ```
  */
 
@@ -19,17 +19,17 @@ const main = async () => {
          */
         const importFile = process.argv.slice(2)[0]
         if (!importFile) {
-            throw Error('Error - employers file not provided...')
+            throw Error('Error - jobs file not provided...')
         }
 
         /**
-         * Parse employers file
+         * Parse user file
          */
         const fileJSON = JSON.parse(await readFile(new URL(importFile, import.meta.url)))
 
         console.log(
-            `ℹ️ Starting preparation of employers import into firebase...\n`,
-            `👥 Employers: ${fileJSON.length}`
+            `ℹ️ Starting preparation of jobs import into firebase...\n`,
+            `💼 Jobs: ${fileJSON.length}`
         )
 
         /**
@@ -70,18 +70,8 @@ const main = async () => {
             console.log(`ℹ️ Loop through and do batchRef.set ${item.documents.length} times...`)
 
             item.documents.forEach((document) => {
-                const employersCollectionRef = database.collection('employers').doc(document.id)
-                item.batchRef.set(employersCollectionRef, {
-                    ...document,
-                    //         createdAt: serverTimestamp(),
-                    //         updatedAt: serverTimestamp(),
-                    //         users: [
-                    //             {
-                    //                 userId: '1234',
-                    //                 role: 'owner', // owner/user (owners can delete stuff?) future proofing
-                    //             },
-                    //         ],
-                })
+                const jobsCollectionRef = database.collection('jobs').doc(document.id)
+                item.batchRef.set(jobsCollectionRef, document)
             })
         })
 
@@ -102,7 +92,7 @@ const main = async () => {
             // })
         }
 
-        console.log(`🏁 Complete: Migrated ${fileJSON.length} employers...`)
+        console.log(`🏁 Complete: Migrated ${fileJSON.length} jobs...`)
     } catch (err) {
         console.error(err)
     }

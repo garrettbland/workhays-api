@@ -91,6 +91,8 @@ const main = async () => {
             //     console.log(`✅ Wrote batch ` + i)
             // })
         }
+
+        console.log(`🏁 Complete: Migrated ${fileJSON.length} users...`)
     } catch (err) {
         console.error(err)
     }
